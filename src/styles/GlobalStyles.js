@@ -11,19 +11,20 @@ const GlobalStyles = createGlobalStyle`
   * {
     margin: 0;
     box-sizing: border-box;
-  }
-
-  body {
+    font-family: 'Roboto';
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
-      height: 100vh;
+    color:${colors.white};
+  }
+
+  body {
+    height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100vh;
     font-size: 16px;
     background: ${colors.blackBackground};
-    color:${colors.white};
   }
 
   a {
