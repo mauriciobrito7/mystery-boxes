@@ -1,5 +1,11 @@
+import Button from "../../components/Button";
+
 function Home() {
-  return <div>Product List</div>;
+  return (
+    <div>
+      <Button>Try Again</Button>
+    </div>
+  );
 }
 
 export default Home;
