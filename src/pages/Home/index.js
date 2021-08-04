@@ -3,7 +3,11 @@ import Button from "../../components/Button";
 function Home() {
   return (
     <div>
-      <Button>Try Again</Button>
+      Add:
+      <br />
+      -ListOfCard
+      <br />
+      -CardComponent
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { CustomButton } from "./Button.style";
 
-function Button({ children }) {
-  return <CustomButton>{children}</CustomButton>;
+function Button({ children, secondary }) {
+  return <CustomButton secondary={secondary}>{children}</CustomButton>;
 }
 
 export default Button;
