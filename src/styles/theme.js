@@ -11,7 +11,7 @@ export const colors = {
   mariner: "#2A61CA",
   blackBackground: "#23282C",
   mainBackground: "#344046",
-  grandient: "linear-gradient(to right, #fccf31, #f55555)",
+  gradient: "linear-gradient(to right, #fccf31, #f55555)",
 };
 
 export const fontConfig = {
