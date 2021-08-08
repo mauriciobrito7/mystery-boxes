@@ -56,6 +56,8 @@ export const fontConfig = {
   },
 };
 
+export const borderRadius = "4px";
+
 export const breakpoints = {
   mobile: "375px",
   tablet: "768px",
