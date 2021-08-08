@@ -1,14 +1,10 @@
-import Button from "../../components/Button";
+import ListOfCards from "../../components/ListOfCards/";
 
 function Home() {
   return (
-    <div>
-      Add:
-      <br />
-      -ListOfCard
-      <br />
-      -CardComponent
-    </div>
+    <>
+      <ListOfCards title="Open Mystery Boxes & Receive Shipped Real-World Items" />
+    </>
   );
 }
 
