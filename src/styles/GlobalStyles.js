@@ -24,6 +24,10 @@ const GlobalStyles = createGlobalStyle`
     text-decoration:none;
   }
 
+  h1, h2 {
+    color:${colors.white}
+  }
+
   h1 {
     font-size: ${fontConfig.fontSize.h1};
   }
