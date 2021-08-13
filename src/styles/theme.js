@@ -11,8 +11,52 @@ export const colors = {
   mariner: "#2A61CA",
   blackBackground: "#23282C",
   mainBackground: "#344046",
-  grandient: "linear-gradient(to right, #fccf31, #f55555)",
+  gradient: "linear-gradient(to right, #fccf31, #f55555)",
 };
+
+export const fontConfig = {
+  font: { body: "Roboto" },
+  fontSize: {
+    body1: {
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: "15px",
+      lineHeight: "15px",
+    },
+    body2: {
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: "14px",
+      lineHeight: "14px",
+    },
+    caption: {
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: "12px",
+      lineHeight: "12px",
+    },
+    h1: {
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: "28px",
+      lineHeight: "33px",
+    },
+    h2: {
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "24px",
+      lineHeight: "28px",
+    },
+    button: {
+      fontStyle: "normal",
+      fontWeight: 500,
+      fontSize: "14px",
+      lineHeight: "16px",
+    },
+  },
+};
+
+export const borderRadius = "4px";
 
 export const breakpoints = {
   mobile: "375px",

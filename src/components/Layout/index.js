@@ -1,13 +1,13 @@
-import { MainContent } from "./Layout.style";
+import { Container, MainContent } from "./Layout.style";
 import Header from "../Header/";
 
 function Layout({ children }) {
   return (
     <>
-      <MainContent>
+      <Container>
         <Header />
-        {children}
-      </MainContent>
+        <MainContent>{children}</MainContent>
+      </Container>
     </>
   );
 }
