@@ -3,7 +3,7 @@ import { breakpoints, device } from "../../styles/theme";
 
 export const Container = styled.div`
   margin: 0 1em;
-  max-width: ${breakpoints.large};
+  max-width: ${breakpoints.desktop};
   ${device.desktop`
     margin-right: auto;
     margin-left: auto; 
