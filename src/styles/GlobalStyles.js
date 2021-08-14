@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { colors, fontConfig } from "./theme";
+import background from "../assets/background.svg";
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -17,7 +18,10 @@ const GlobalStyles = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     height: 100vh;
     font-size: ${fontConfig.fontSize.body1};
-    background: ${colors.blackBackground};
+    background: ${colors.woodsmoke};
+    background-image: url(${background});
+    background-position-x: right;
+    background-repeat: no-repeat;
   }
 
   a {
