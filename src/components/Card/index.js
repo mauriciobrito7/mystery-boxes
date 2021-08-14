@@ -1,15 +1,21 @@
-import { CardContainer, CardInfo, CardLabel } from "./Card.style";
-import { ReactComponent as PcBox } from "../../assets/pc-box.svg";
+import { CardContainer, CardInfo, CardLabel, CardPrice } from "./Card.style";
+import { formatterCurrency } from "../../utils/index";
+import { currencies, locales } from "../../constants/index";
 
-function Card() {
+const Card = ({ boxImg, info, label, labelColor, price }) => {
   return (
     <CardContainer>
-      <PcBox />
+      {boxImg}
 
-      <CardInfo>Pc Budget</CardInfo>
-      <CardLabel> Unbox</CardLabel>
+      <CardInfo>{info}</CardInfo>
+      <CardLabel labelColor={labelColor}>
+        {label}
+        <CardPrice>
+          {formatterCurrency(locales["US"], currencies["USD"], price)}
+        </CardPrice>
+      </CardLabel>
     </CardContainer>
   );
-}
+};
 
 export default Card;
