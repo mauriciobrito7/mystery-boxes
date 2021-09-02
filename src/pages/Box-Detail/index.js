@@ -12,9 +12,10 @@ import { currencies, locales } from "../../constants/index";
 import GoBack from "../../components/GoBack";
 import { useParams } from "react-router-dom";
 import { setBoxByFilter } from "../../redux/actions";
+import { discountBalance } from "../../redux/actions";
 import { connect } from "react-redux";
 
-function BoxDetail({ boxFromCache, setBoxByFilter }) {
+function BoxDetail({ boxFromCache, setBoxByFilter, discountBalance }) {
   const { id } = useParams();
   const [boxSelected, setboxSelected] = useState(null);
 
@@ -25,7 +26,11 @@ function BoxDetail({ boxFromCache, setBoxByFilter }) {
     if (boxFromCache) {
       setboxSelected(boxFromCache);
     }
-  }, [boxFromCache, id]);
+  }, [boxFromCache]);
+
+  const handleOpenBox = () => {
+    discountBalance(boxSelected.price);
+  };
 
   return (
     <BoxDetailContainer>
@@ -45,9 +50,13 @@ function BoxDetail({ boxFromCache, setBoxByFilter }) {
             </BoxDetailTitle>
           </BoxDetailNav>
           <BoxDetailImg src={boxSelected.boxImg} />
-          <Button>
+          <Button handleOnClick={handleOpenBox}>
             Open For{" "}
-            {formatterCurrency(locales["US"], currencies["USD"], 49.99)}{" "}
+            {formatterCurrency(
+              locales["US"],
+              currencies["USD"],
+              boxSelected.price
+            )}{" "}
           </Button>
         </>
       )}
@@ -57,6 +66,7 @@ function BoxDetail({ boxFromCache, setBoxByFilter }) {
 
 const mapDispatchToProps = (dispatch) => ({
   setBoxByFilter: (id) => dispatch(setBoxByFilter(id)),
+  discountBalance: (amount) => dispatch(discountBalance(amount)),
 });
 
 const mapStateToProps = (state) => ({
