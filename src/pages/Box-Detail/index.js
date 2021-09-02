@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import {
   BoxDetailContainer,
   BoxDetailNav,
@@ -9,27 +9,58 @@ import {
 import Button from "../../components/Button/";
 import { formatterCurrency } from "../../utils/index";
 import { currencies, locales } from "../../constants/index";
-import pcBox from "../../assets/pc-box.svg";
 import GoBack from "../../components/GoBack";
+import { useParams } from "react-router-dom";
+import { setBoxByFilter } from "../../redux/actions";
+import { connect } from "react-redux";
 
-function BoxDetail() {
+function BoxDetail({ boxFromCache, setBoxByFilter }) {
+  const { id } = useParams();
+  const [boxSelected, setboxSelected] = useState(null);
+
+  useEffect(() => {
+    if (id) {
+      setBoxByFilter(id);
+    }
+    if (boxFromCache) {
+      setboxSelected(boxFromCache);
+    }
+  }, [boxFromCache, id]);
+
   return (
     <BoxDetailContainer>
-      <BoxDetailNav>
-        <GoBack />
-        <BoxDetailTitle>
-          Pokemon Collection{" "}
-          <BoxDetailPrice>
-            {formatterCurrency(locales["US"], currencies["USD"], 49.99)}
-          </BoxDetailPrice>
-        </BoxDetailTitle>
-      </BoxDetailNav>
-      <BoxDetailImg src={pcBox} />
-      <Button>
-        Open For {formatterCurrency(locales["US"], currencies["USD"], 49.99)}{" "}
-      </Button>
+      {boxSelected && (
+        <>
+          <BoxDetailNav>
+            <GoBack />
+            <BoxDetailTitle>
+              {boxSelected.info}{" "}
+              <BoxDetailPrice>
+                {formatterCurrency(
+                  locales["US"],
+                  currencies["USD"],
+                  boxSelected.price
+                )}
+              </BoxDetailPrice>
+            </BoxDetailTitle>
+          </BoxDetailNav>
+          <BoxDetailImg src={boxSelected.boxImg} />
+          <Button>
+            Open For{" "}
+            {formatterCurrency(locales["US"], currencies["USD"], 49.99)}{" "}
+          </Button>
+        </>
+      )}
     </BoxDetailContainer>
   );
 }
 
-export default BoxDetail;
+const mapDispatchToProps = (dispatch) => ({
+  setBoxByFilter: (id) => dispatch(setBoxByFilter(id)),
+});
+
+const mapStateToProps = (state) => ({
+  boxFromCache: state.boxes.boxSelected,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BoxDetail);
