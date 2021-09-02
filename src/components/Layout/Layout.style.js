@@ -12,6 +12,5 @@ export const Container = styled.div`
 
 export const MainContent = styled.main`
   width: 100%;
-  border: 1px dashed red;
   margin: 4em auto;
 `;
