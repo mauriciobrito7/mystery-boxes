@@ -5,9 +5,9 @@ import pokemonBox from "../../assets/pokemon-box.svg";
 import * as types from "../types";
 
 const INITIAL_STATE = {
-  boxes: [
+  boxesDetails: [
     {
-      id: "0",
+      id: "1",
       name: "Pc Box",
       boxImg: pcBox,
       info: "Pc Budget",
@@ -50,7 +50,9 @@ const boxesReducer = (state = INITIAL_STATE, action) => {
     case types.SET_BOX_BY_FILTER:
       return {
         ...state,
-        boxSelected: state.boxes.find((box) => box.id === action.payload.id),
+        boxSelected: state.boxesDetails.find(
+          (box) => box.id === action.payload.id
+        ),
       };
 
     default:

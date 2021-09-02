@@ -12,7 +12,7 @@ function ListOfCards({ title, boxes }) {
 }
 
 const mapStateToProps = (state) => ({
-  boxes: state.boxes.boxes,
+  boxes: state.boxes.boxesDetails,
 });
 
 export default connect(mapStateToProps, null)(ListOfCards);
