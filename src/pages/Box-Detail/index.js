@@ -9,12 +9,13 @@ import {
 import Button from "../../components/Button/";
 import { formatterCurrency } from "../../utils/index";
 import { currencies, locales } from "../../constants/index";
-import GoBack from "../../components/GoBack";
 import { useParams } from "react-router-dom";
 import { setBoxByFilter } from "../../redux/actions";
 import { discountBalance } from "../../redux/actions";
 import { setGiftsByFilter } from "../../redux/actions";
 import { connect } from "react-redux";
+import GoBack from "../../components/GoBack";
+import RandomGifts from "../../components/RandomGifts";
 
 function BoxDetail({
   boxFromCache,
@@ -65,6 +66,7 @@ function BoxDetail({
               boxSelected.price
             )}{" "}
           </Button>
+          <RandomGifts gifts={giftsFromCache} />
         </>
       )}
     </BoxDetailContainer>
