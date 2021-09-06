@@ -47,7 +47,7 @@ export const GiftsContainer = styled.div`
   }
 `;
 
-export const GiftBand = styled.div`
+export const GiftsBand = styled.div`
   display: inline-flex;
   width: auto;
   height: 100%;
@@ -56,48 +56,6 @@ export const GiftBand = styled.div`
     infinite linear;
   animation-play-state: ${(props) =>
     props.stopAnimation ? "paused" : "running"};
-`;
-
-export const GiftCard = styled.div`
-  background: ${colors.blackBackground};
-  width: ${widthOfCard}px;
-  height: 242px;
-  border-radius: ${borderRadius};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-right: ${marginOfCard}px;
-  &:last-of-type {
-    margin-right: 0;
-  }
-`;
-
-export const GiftImgWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  height: 148px;
-`;
-
-export const GiftImg = styled.img`
-  margin-bottom: 1em;
-`;
-
-export const GiftTitle = styled.span`
-  text-align: center;
-  margin-bottom: 1em;
-  margin-left: auto;
-  margin-right: auto;
-  width: 140px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-export const GiftLabel = styled.span`
-  color: ${colors.jaffa};
 `;
 
 export const GiftSpinner = styled.div`

@@ -26,6 +26,7 @@ function BoxDetail({
 }) {
   const { id } = useParams();
   const [boxSelected, setboxSelected] = useState(null);
+  const [startRandomGift, setStartRandomGift] = useState(false);
   useEffect(() => {
     if (id) {
       setBoxByFilter(id);
@@ -38,6 +39,7 @@ function BoxDetail({
 
   const handleOpenBox = () => {
     discountBalance(boxSelected.price);
+    setStartRandomGift(true);
   };
 
   return (
@@ -57,16 +59,20 @@ function BoxDetail({
               </BoxDetailPrice>
             </BoxDetailTitle>
           </BoxDetailNav>
-          <BoxDetailImg src={boxSelected.boxImg} />
-          <Button handleOnClick={handleOpenBox}>
-            Open For{" "}
-            {formatterCurrency(
-              locales["US"],
-              currencies["USD"],
-              boxSelected.price
-            )}{" "}
-          </Button>
-          <RandomGifts gifts={giftsFromCache} />
+          {!startRandomGift && (
+            <>
+              <BoxDetailImg src={boxSelected.boxImg} />
+              <Button handleOnClick={handleOpenBox}>
+                Open For{" "}
+                {formatterCurrency(
+                  locales["US"],
+                  currencies["USD"],
+                  boxSelected.price
+                )}{" "}
+              </Button>
+            </>
+          )}
+          {startRandomGift && <RandomGifts gifts={giftsFromCache} />}
         </>
       )}
     </BoxDetailContainer>

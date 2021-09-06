@@ -1,14 +1,7 @@
 import { useState, useEffect } from "react";
-import {
-  GiftsContainer,
-  GiftCard,
-  GiftBand,
-  GiftImgWrapper,
-  GiftImg,
-  GiftTitle,
-  GiftLabel,
-  GiftSpinner,
-} from "./RandomGifts.styles";
+import { GiftsContainer, GiftsBand, GiftSpinner } from "./RandomGifts.styles";
+import Gift from "../Gift";
+import GiftModal from "../GiftModal";
 
 const MIN_NUM = 2;
 const MAX_NUM = 3;
@@ -19,6 +12,7 @@ function RandomGifts({ gifts }) {
   const [stopAnimation, setStopAnimation] = useState(false);
   const [timeOfAnimation, setTimeOfAnimation] = useState(0);
   const [giftSelected, setGiftSelected] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
 
   const randomNumberWithDecimal = () => {
     const accuracy = Math.pow(10, NUM_OF_DECIMALS);
@@ -26,6 +20,7 @@ function RandomGifts({ gifts }) {
     const max = MAX_NUM * accuracy;
     return Math.floor(Math.random() * (max - min + 1) + min) / accuracy;
   };
+
   const getSecondsToMilliSeconds = (seconds) => seconds * 1000;
 
   useEffect(() => {
@@ -42,9 +37,13 @@ function RandomGifts({ gifts }) {
     setTimeOfAnimation(randomTime);
   }, []);
 
+  const handleAnimation = () =>
+    setTimeout(() => {
+      setStopAnimation(true);
+      setTimeout(() => setOpenModal(true), 1000);
+    }, timeOfAnimation);
+
   useEffect(() => {
-    const handleAnimation = () =>
-      setTimeout(() => setStopAnimation(true), timeOfAnimation);
     if (timeOfAnimation > 0) {
       handleAnimation();
     }
@@ -57,33 +56,17 @@ function RandomGifts({ gifts }) {
   return (
     <>
       <GiftsContainer>
-        <GiftBand
+        <GiftsBand
           stopAnimation={stopAnimation}
           numberOfElements={gifts ? gifts.length : null}
         >
-          {gifts &&
-            gifts.map((gift, index) => (
-              <GiftCard key={gift.name}>
-                <GiftImgWrapper>
-                  <GiftImg src={gift.img} alt={gift.name} />
-                </GiftImgWrapper>
-                <GiftTitle>{gift.name}</GiftTitle>
-                <GiftLabel>{gift.label}</GiftLabel>
-              </GiftCard>
-            ))}
-          {gifts &&
-            gifts.map((gift, index) => (
-              <GiftCard key={gift.name}>
-                <GiftImgWrapper>
-                  <GiftImg src={gift.img} alt={gift.name} />
-                </GiftImgWrapper>
-                <GiftTitle>{gift.name}</GiftTitle>
-                <GiftLabel>{gift.label}</GiftLabel>
-              </GiftCard>
-            ))}
-        </GiftBand>
+          {gifts && gifts.map((gift) => <Gift key={gift.id} {...gift} />)}
+          {gifts && gifts.map((gift) => <Gift key={gift.id} {...gift} />)}
+        </GiftsBand>
         <GiftSpinner />
       </GiftsContainer>
+
+      {openModal && <GiftModal isOpen={openModal} gift={giftSelected} />}
     </>
   );
 }
