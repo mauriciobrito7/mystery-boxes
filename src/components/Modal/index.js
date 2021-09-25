@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { ModalContainer } from "./Modal.styles";
+import { ModalContainer, CloseIcon } from "./Modal.styles";
 
 function Modal({ isOpen = false, onClose, children }) {
   if (!isOpen) {
@@ -9,7 +9,10 @@ function Modal({ isOpen = false, onClose, children }) {
   return (
     <div>
       {ReactDOM.createPortal(
-        <ModalContainer>{children}</ModalContainer>,
+        <ModalContainer>
+          <CloseIcon onClick={onClose} />
+          {children}
+        </ModalContainer>,
         document.getElementById("modal")
       )}
     </div>
