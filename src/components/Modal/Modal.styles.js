@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
 import { breakpoints, colors } from "../../styles/theme";
+import { ReactComponent as CloseSvg } from "../../assets/close-icon.svg";
 
 export const ModalContainer = styled.div`
   background: ${colors.mainBackground};
@@ -18,4 +19,11 @@ export const ModalContainer = styled.div`
   align-items: center;
   border-radius: 8px;
   z-index: 2;
+`;
+
+export const CloseIcon = styled(CloseSvg)`
+  position: absolute;
+  top: 1.5em;
+  left: 3em;
+  cursor: pointer;
 `;

@@ -8,7 +8,7 @@ const MAX_NUM = 3;
 const NUM_OF_DECIMALS = 1;
 const VELOCITY_PER_SECONDS = 1;
 
-function RandomGifts({ gifts }) {
+function RandomGifts({ gifts, resetBox }) {
   const [stopAnimation, setStopAnimation] = useState(false);
   const [timeOfAnimation, setTimeOfAnimation] = useState(0);
   const [giftSelected, setGiftSelected] = useState(null);
@@ -66,7 +66,16 @@ function RandomGifts({ gifts }) {
         <GiftSpinner />
       </GiftsContainer>
 
-      {openModal && <GiftModal isOpen={openModal} gift={giftSelected} />}
+      {openModal && (
+        <GiftModal
+          onClose={() => {
+            setOpenModal(false);
+            resetBox();
+          }}
+          isOpen={openModal}
+          gift={giftSelected}
+        />
+      )}
     </>
   );
 }

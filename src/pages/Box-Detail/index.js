@@ -42,6 +42,10 @@ function BoxDetail({
     setStartRandomGift(true);
   };
 
+  const resetBox = () => {
+    setStartRandomGift(false);
+  };
+
   return (
     <BoxDetailContainer>
       {boxSelected && (
@@ -72,7 +76,9 @@ function BoxDetail({
               </Button>
             </>
           )}
-          {startRandomGift && <RandomGifts gifts={giftsFromCache} />}
+          {startRandomGift && (
+            <RandomGifts resetBox={resetBox} gifts={giftsFromCache} />
+          )}
         </>
       )}
     </BoxDetailContainer>
