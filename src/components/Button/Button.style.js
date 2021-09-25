@@ -28,7 +28,7 @@ export const CustomButton = styled.button`
       }
 
       &::before {
-        background: ${colors.blackBackground};
+        background: ${colors.mainBackground};
         top: 0px; 
         bottom: 0px;
         left: 0px; 
