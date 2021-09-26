@@ -24,8 +24,11 @@ export const GiftPrice = styled.span`
 
 export const GiftButtonsContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  max-width: 311px;
+  width: 311px;
   margin-top: 1.5em;
+  & button:first-of-type {
+    margin-right: 1em;
+  }
 `;
