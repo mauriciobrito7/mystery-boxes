@@ -10,8 +10,14 @@ import { formatterCurrency } from "../../utils/index";
 import { currencies, locales } from "../../constants/index";
 import Button from "../Button";
 import Gift from "../Gift";
+import { connect } from "react-redux";
+import { addBalance } from "../../redux/actions/user";
 
-function GiftModal({ isOpen, onClose, gift }) {
+function GiftModal({ isOpen, onClose, gift, addBalance }) {
+  const sellGift = (sellPrice) => {
+    addBalance(sellPrice);
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <GiftModalContainer>
@@ -28,7 +34,7 @@ function GiftModal({ isOpen, onClose, gift }) {
         <Gift {...gift} />
         <GiftButtonsContainer>
           <Button>Try Again</Button>
-          <Button secondary>
+          <Button handleOnClick={() => sellGift(gift?.sellPrice)} secondary>
             Sell for{" "}
             {formatterCurrency(
               locales["US"],
@@ -42,4 +48,8 @@ function GiftModal({ isOpen, onClose, gift }) {
   );
 }
 
-export default GiftModal;
+const mapDispatchToProps = (dispatch) => ({
+  addBalance: (amount) => dispatch(addBalance(amount)),
+});
+
+export default connect(null, mapDispatchToProps)(GiftModal);

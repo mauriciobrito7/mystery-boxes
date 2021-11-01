@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components/macro";
-import { colors, borderRadius } from "../../styles/theme";
+import { colors } from "../../styles/theme";
 
 const widthOfCard = 180;
 const heightofCard = 242;

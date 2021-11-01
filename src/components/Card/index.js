@@ -7,7 +7,7 @@ const Card = ({ id, boxImg, info, label, labelColor, price }) => {
   return (
     <CardContainer>
       <Link to={`/box-detail/${id}`}>
-        <img src={boxImg} />
+        <img src={boxImg} alt={label}/>
         <CardInfo>{info}</CardInfo>
         <CardLabel labelColor={labelColor}>
           {label}
