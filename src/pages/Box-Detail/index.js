@@ -28,14 +28,14 @@ function BoxDetail({
   const [boxSelected, setboxSelected] = useState(null);
   const [startRandomGift, setStartRandomGift] = useState(false);
   useEffect(() => {
-    if (id) {
-      setBoxByFilter(id);
-      setGiftsByFilter(id);
-    }
-    if (boxFromCache) {
-      setboxSelected(boxFromCache);
-    }
-  }, [boxFromCache]);
+		if (id) {
+			setBoxByFilter(id);
+			setGiftsByFilter(id);
+		}
+		if (boxFromCache) {
+			setboxSelected(boxFromCache);
+		}
+	}, [boxFromCache, id, setBoxByFilter, setGiftsByFilter]);
 
   const handleOpenBox = () => {
     discountBalance(boxSelected.price);

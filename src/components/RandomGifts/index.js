@@ -24,34 +24,35 @@ function RandomGifts({ gifts, resetBox }) {
   const getSecondsToMilliSeconds = (seconds) => seconds * 1000;
 
   useEffect(() => {
-    const randomNumber = randomNumberWithDecimal();
-    const randomTime = getSecondsToMilliSeconds(randomNumber);
-    const turns = randomNumber / VELOCITY_PER_SECONDS;
-    const percentage = (turns % 1).toFixed(1) * 100;
-    if (gifts) {
-      const indexOfWinner = Math.floor((gifts.length * percentage) / 100);
-      const winner = gifts[indexOfWinner];
-      setGiftSelected(winner);
-    }
-    console.log(randomTime);
-    setTimeOfAnimation(randomTime);
-  }, []);
+		const randomNumber = randomNumberWithDecimal();
+		const randomTime = getSecondsToMilliSeconds(randomNumber);
+		const turns = randomNumber / VELOCITY_PER_SECONDS;
+		const percentage = (turns % 1).toFixed(1) * 100;
+		if (gifts) {
+			const indexOfWinner = Math.floor((gifts.length * percentage) / 100);
+			const winner = gifts[indexOfWinner];
+			setGiftSelected(winner);
+		}
+		console.log(randomTime);
+		setTimeOfAnimation(randomTime);
+	}, [gifts]);
 
-  const handleAnimation = () =>
-    setTimeout(() => {
-      setStopAnimation(true);
-      setTimeout(() => setOpenModal(true), 1000);
-    }, timeOfAnimation);
+	const handleAnimation = () =>
+		setTimeout(() => {
+			setStopAnimation(true);
+			setTimeout(() => setOpenModal(true), 1000);
+		}, timeOfAnimation);
 
-  useEffect(() => {
-    if (timeOfAnimation > 0) {
-      handleAnimation();
-    }
+	useEffect(() => {
+		if (timeOfAnimation > 0) {
+			handleAnimation();
+		}
 
-    return () => {
-      clearTimeout(handleAnimation);
-    };
-  }, [stopAnimation, timeOfAnimation]);
+		return () => {
+			clearTimeout(handleAnimation);
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [stopAnimation, timeOfAnimation]);
 
   return (
     <>
