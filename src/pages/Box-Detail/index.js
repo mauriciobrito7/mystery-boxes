@@ -35,10 +35,17 @@ function BoxDetail({
 		if (boxFromCache) {
 			setboxSelected(boxFromCache);
 		}
-	}, [boxFromCache, id, setBoxByFilter, setGiftsByFilter, startRandomGift]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [boxFromCache, id, startRandomGift]);
 
 	const handleOpenBox = () => {
 		discountBalance(boxSelected.price);
+		setStartRandomGift(true);
+	};
+
+	const resetOpenedBox = () => {
+		discountBalance(boxSelected.price);
+		setStartRandomGift(false);
 		setStartRandomGift(true);
 	};
 
@@ -80,7 +87,7 @@ function BoxDetail({
 						<RandomGifts
 							resetBox={resetBox}
 							gifts={giftsFromCache}
-							resetOpenedBox={handleOpenBox}
+							resetOpenedBox={resetOpenedBox}
 						/>
 					)}
 				</>

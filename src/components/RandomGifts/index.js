@@ -35,7 +35,8 @@ function RandomGifts({ gifts, resetBox, resetOpenedBox }) {
 		}
 		console.log(randomTime);
 		setTimeOfAnimation(randomTime);
-	}, [gifts]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [gifts.length]);
 
 	const handleAnimation = () =>
 		setTimeout(() => {
