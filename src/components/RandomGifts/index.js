@@ -8,22 +8,22 @@ const MAX_NUM = 3;
 const NUM_OF_DECIMALS = 1;
 const VELOCITY_PER_SECONDS = 1;
 
-function RandomGifts({ gifts, resetBox }) {
-  const [stopAnimation, setStopAnimation] = useState(false);
-  const [timeOfAnimation, setTimeOfAnimation] = useState(0);
-  const [giftSelected, setGiftSelected] = useState(null);
-  const [openModal, setOpenModal] = useState(false);
+function RandomGifts({ gifts, resetBox, resetOpenedBox }) {
+	const [stopAnimation, setStopAnimation] = useState(false);
+	const [timeOfAnimation, setTimeOfAnimation] = useState(0);
+	const [giftSelected, setGiftSelected] = useState(null);
+	const [openModal, setOpenModal] = useState(false);
 
-  const randomNumberWithDecimal = () => {
-    const accuracy = Math.pow(10, NUM_OF_DECIMALS);
-    const min = MIN_NUM * accuracy;
-    const max = MAX_NUM * accuracy;
-    return Math.floor(Math.random() * (max - min + 1) + min) / accuracy;
-  };
+	const randomNumberWithDecimal = () => {
+		const accuracy = Math.pow(10, NUM_OF_DECIMALS);
+		const min = MIN_NUM * accuracy;
+		const max = MAX_NUM * accuracy;
+		return Math.floor(Math.random() * (max - min + 1) + min) / accuracy;
+	};
 
-  const getSecondsToMilliSeconds = (seconds) => seconds * 1000;
+	const getSecondsToMilliSeconds = (seconds) => seconds * 1000;
 
-  useEffect(() => {
+	useEffect(() => {
 		const randomNumber = randomNumberWithDecimal();
 		const randomTime = getSecondsToMilliSeconds(randomNumber);
 		const turns = randomNumber / VELOCITY_PER_SECONDS;
@@ -35,7 +35,8 @@ function RandomGifts({ gifts, resetBox }) {
 		}
 		console.log(randomTime);
 		setTimeOfAnimation(randomTime);
-	}, [gifts]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [gifts.length]);
 
 	const handleAnimation = () =>
 		setTimeout(() => {
@@ -54,31 +55,38 @@ function RandomGifts({ gifts, resetBox }) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [stopAnimation, timeOfAnimation]);
 
-  return (
-    <>
-      <GiftsContainer>
-        <GiftsBand
-          stopAnimation={stopAnimation}
-          numberOfElements={gifts ? gifts.length : null}
-        >
-          {gifts && gifts.map((gift) => <Gift key={gift.id} {...gift} />)}
-          {gifts && gifts.map((gift) => <Gift key={gift.id} {...gift} />)}
-        </GiftsBand>
-        <GiftSpinner />
-      </GiftsContainer>
+	return (
+		<>
+			<GiftsContainer>
+				<GiftsBand
+					stopAnimation={stopAnimation}
+					numberOfElements={gifts ? gifts.length : null}
+				>
+					{gifts &&
+						gifts.map((gift) => (
+							<Gift key={`primary-band-${gift.name}`} {...gift} />
+						))}
+					{gifts &&
+						gifts.map((gift) => (
+							<Gift key={`secondary-band-${gift.name}`} {...gift} />
+						))}
+				</GiftsBand>
+				<GiftSpinner />
+			</GiftsContainer>
 
-      {openModal && (
-        <GiftModal
-          onClose={() => {
-            setOpenModal(false);
-            resetBox();
-          }}
-          isOpen={openModal}
-          gift={giftSelected}
-        />
-      )}
-    </>
-  );
+			{openModal && (
+				<GiftModal
+					onClose={() => {
+						setOpenModal(false);
+						resetBox();
+					}}
+					isOpen={openModal}
+					gift={giftSelected}
+					resetOpenedBox={resetOpenedBox}
+				/>
+			)}
+		</>
+	);
 }
 
 export default RandomGifts;
