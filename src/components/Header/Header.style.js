@@ -1,31 +1,30 @@
 import styled from "styled-components/macro";
 import { colors, device, fontConfig } from "../../styles/theme";
 
+export const headerHeight = "80px";
+
 export const HeaderContainer = styled.header`
-  width: 100%;
-  height: 40px;
-  margin-bottom: 2em;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background: transparent;
-  font-size: ${fontConfig.fontSize.body2};
-  transform: translateY(2em);
+	width: 100%;
+	height: ${headerHeight};
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	background: transparent;
+	font-size: ${fontConfig.fontSize.body2};
 `;
 
 export const Nav = styled.nav`
-  width: 90%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  ${device.custom(
-    `
+	width: 90%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	${device.custom(
+		`
     width: 60%;
     `,
-    "480px"
-  )}
-  ${device.tablet`
+		"480px"
+	)}
+	${device.tablet`
     width: 35%;
   `}
   ${device.desktop`
@@ -38,13 +37,13 @@ export const Nav = styled.nav`
 `;
 
 export const Balance = styled.div`
-  border: 1px solid ${colors.white};
-  width: 112px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 40px;
+	border: 1px solid ${colors.white};
+	width: 112px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 40px;
 `;
 
 export const Amount = styled.div`
