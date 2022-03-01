@@ -12,6 +12,7 @@ export const colors = {
 	blackBackground: "#23282C",
 	mainBackground: "#344046",
 	textDark: "#373737",
+	borderRed: "#E74C3C",
 	gradient: "linear-gradient(to right, #fccf31, #f55555)",
 };
 

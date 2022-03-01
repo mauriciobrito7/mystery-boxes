@@ -5,23 +5,25 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import Home from "./pages/Home";
 import BoxDetail from "./pages/Box-Detail";
+import Notification from "./components/Notification";
 
 function App() {
-  return (
-    <div className="App">
-      <GlobalStyles />
-      <Provider store={store}>
-        <Layout>
-          <Router>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/box-detail/:id" component={BoxDetail} />
-            </Switch>
-          </Router>
-        </Layout>
-      </Provider>
-    </div>
-  );
+	return (
+		<div className="App">
+			<GlobalStyles />
+			<Provider store={store}>
+				<Layout>
+					<Router>
+						<Switch>
+							<Route exact path="/" component={Home} />
+							<Route exact path="/box-detail/:id" component={BoxDetail} />
+						</Switch>
+					</Router>
+					<Notification />
+				</Layout>
+			</Provider>
+		</div>
+	);
 }
 
 export default App;
