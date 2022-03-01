@@ -35,54 +35,58 @@ function BoxDetail({
 		if (boxFromCache) {
 			setboxSelected(boxFromCache);
 		}
-	}, [boxFromCache, id, setBoxByFilter, setGiftsByFilter]);
+	}, [boxFromCache, id, setBoxByFilter, setGiftsByFilter, startRandomGift]);
 
-  const handleOpenBox = () => {
-    discountBalance(boxSelected.price);
-    setStartRandomGift(true);
-  };
+	const handleOpenBox = () => {
+		discountBalance(boxSelected.price);
+		setStartRandomGift(true);
+	};
 
-  const resetBox = () => {
-    setStartRandomGift(false);
-  };
+	const resetBox = () => {
+		setStartRandomGift(false);
+	};
 
-  return (
-    <BoxDetailContainer>
-      {boxSelected && (
-        <>
-          <BoxDetailNav>
-            <GoBack />
-            <BoxDetailTitle>
-              {boxSelected.info}{" "}
-              <BoxDetailPrice>
-                {formatterCurrency(
-                  locales["US"],
-                  currencies["USD"],
-                  boxSelected.price
-                )}
-              </BoxDetailPrice>
-            </BoxDetailTitle>
-          </BoxDetailNav>
-          {!startRandomGift && (
-            <>
-              <BoxDetailImg src={boxSelected.boxImg} />
-              <Button handleOnClick={handleOpenBox}>
-                Open For{" "}
-                {formatterCurrency(
-                  locales["US"],
-                  currencies["USD"],
-                  boxSelected.price
-                )}{" "}
-              </Button>
-            </>
-          )}
-          {startRandomGift && (
-            <RandomGifts resetBox={resetBox} gifts={giftsFromCache} />
-          )}
-        </>
-      )}
-    </BoxDetailContainer>
-  );
+	return (
+		<BoxDetailContainer>
+			{boxSelected && (
+				<>
+					<BoxDetailNav>
+						<GoBack />
+						<BoxDetailTitle>
+							{boxSelected.info}{" "}
+							<BoxDetailPrice>
+								{formatterCurrency(
+									locales["US"],
+									currencies["USD"],
+									boxSelected.price
+								)}
+							</BoxDetailPrice>
+						</BoxDetailTitle>
+					</BoxDetailNav>
+					{!startRandomGift && (
+						<>
+							<BoxDetailImg src={boxSelected.boxImg} />
+							<Button handleOnClick={handleOpenBox}>
+								Open For{" "}
+								{formatterCurrency(
+									locales["US"],
+									currencies["USD"],
+									boxSelected.price
+								)}{" "}
+							</Button>
+						</>
+					)}
+					{startRandomGift && (
+						<RandomGifts
+							resetBox={resetBox}
+							gifts={giftsFromCache}
+							resetOpenedBox={handleOpenBox}
+						/>
+					)}
+				</>
+			)}
+		</BoxDetailContainer>
+	);
 }
 
 const mapDispatchToProps = (dispatch) => ({
