@@ -5,8 +5,8 @@ import {
 	CardPrice,
 	CardImage,
 } from "./Card.style";
-import { formatterCurrency } from "../../utils/index";
-import { currencies, locales } from "../../constants/index";
+import { formatterCurrency } from "../../utils";
+import { currencies, locales } from "../../constants";
 import { Link } from "react-router-dom";
 
 const Card = ({ id, boxImg, info, label, labelColor, price }) => {

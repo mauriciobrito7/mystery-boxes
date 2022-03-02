@@ -7,8 +7,8 @@ import {
 	GiftButtonsContainer,
 } from "./GiftModal.styles";
 import Button from "../Button";
-import { formatterCurrency } from "../../utils/index";
-import { currencies, locales } from "../../constants/index";
+import { formatterCurrency } from "../../utils";
+import { currencies, locales } from "../../constants";
 import Gift from "../Gift";
 import { connect } from "react-redux";
 import { addBalance } from "../../redux/actions/user";
