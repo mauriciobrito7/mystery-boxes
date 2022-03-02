@@ -2,21 +2,22 @@ import styled from "styled-components/macro";
 import { colors } from "../../styles/theme";
 
 export const CustomButton = styled.button`
-  background: ${colors.gradient};
-  color: ${colors.white};
-  min-width: 119px;
-  height: 40px;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 2.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-  ${($props) =>
-    $props.secondary &&
-    `
+	background: ${colors.gradient};
+	color: ${colors.white};
+	min-width: 119px;
+	height: 40px;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 2.5em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	user-select: none;
+	text-transform: uppercase;
+	${($props) =>
+		$props.secondary &&
+		`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
@@ -26,7 +27,6 @@ export const CustomButton = styled.button`
         content: '';
         border-radius: inherit;
       }
-
       &::before {
         background: ${colors.mainBackground};
         top: 0px; 
