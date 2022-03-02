@@ -6,8 +6,8 @@ import {
   User,
   Avatar,
 } from "./Header.style";
-import { formatterCurrency } from "../../utils/index";
-import { currencies, locales } from "../../constants/index";
+import { formatterCurrency } from "../../utils";
+import { currencies, locales } from "../../constants";
 import { ReactComponent as Coin } from "../../assets/coins.svg";
 import { connect } from "react-redux";
 

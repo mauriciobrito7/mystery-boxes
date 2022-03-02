@@ -17,6 +17,11 @@ export const CardContainer = styled.div`
   }
 `;
 
+export const CardImage = styled.img`
+	width: 100%;
+	height: 100%;
+`;
+
 export const CardInfo = styled.p`
   font-size: ${fontConfig.fontSize.body1};
   width: 100%;

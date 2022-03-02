@@ -1,19 +1,28 @@
-import React from "react";
+import { useState } from "react";
 import Modal from "../Modal";
 import {
-  GiftModalContainer,
-  GiftTitle,
-  GiftPrice,
-  GiftButtonsContainer,
+	GiftModalContainer,
+	GiftTitle,
+	GiftPrice,
+	GiftButtonsContainer,
 } from "./GiftModal.styles";
-import { formatterCurrency } from "../../utils/index";
-import { currencies, locales } from "../../constants/index";
 import Button from "../Button";
+import { formatterCurrency } from "../../utils";
+import { currencies, locales } from "../../constants";
 import Gift from "../Gift";
 import { connect } from "react-redux";
 import { addBalance } from "../../redux/actions/user";
 
-function GiftModal({ isOpen, onClose, gift, addBalance, resetOpenedBox }) {
+function GiftModal({
+	isOpen,
+	onClose,
+	gift,
+	addBalance,
+	resetOpenedBox,
+	openNotification,
+	closeNotification,
+}) {
+	const [wasGiftSold, setWasGiftSold] = useState(false);
 	const sellGift = (sellPrice) => {
 		addBalance(sellPrice);
 	};
@@ -38,8 +47,23 @@ function GiftModal({ isOpen, onClose, gift, addBalance, resetOpenedBox }) {
 				</GiftTitle>
 				<Gift {...gift} />
 				<GiftButtonsContainer>
-					<Button handleOnClick={tryAgain}>Try Again</Button>
-					<Button handleOnClick={() => sellGift(gift?.sellPrice)} secondary>
+					<Button
+						handleOnClick={() => {
+							closeNotification();
+							tryAgain();
+						}}
+					>
+						Try Again
+					</Button>
+					<Button
+						handleOnClick={() => {
+							sellGift(gift?.sellPrice);
+							setWasGiftSold(true);
+							openNotification();
+						}}
+						disabled={wasGiftSold}
+						secondary
+					>
 						Sell for{" "}
 						{formatterCurrency(
 							locales["US"],
@@ -54,7 +78,7 @@ function GiftModal({ isOpen, onClose, gift, addBalance, resetOpenedBox }) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addBalance: (amount) => dispatch(addBalance(amount)),
+	addBalance: (amount) => dispatch(addBalance(amount)),
 });
 
 export default connect(null, mapDispatchToProps)(GiftModal);

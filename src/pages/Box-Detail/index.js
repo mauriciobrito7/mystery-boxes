@@ -7,12 +7,14 @@ import {
   BoxDetailImg,
 } from "./Box-Detail.styles";
 import Button from "../../components/Button/";
-import { formatterCurrency } from "../../utils/index";
-import { currencies, locales } from "../../constants/index";
+import { formatterCurrency } from "../../utils";
+import { currencies, locales } from "../../constants";
 import { useParams } from "react-router-dom";
-import { setBoxByFilter } from "../../redux/actions";
-import { discountBalance } from "../../redux/actions";
-import { setGiftsByFilter } from "../../redux/actions";
+import {
+	setBoxByFilter,
+	discountBalance,
+	setGiftsByFilter,
+} from "../../redux/actions";
 import { connect } from "react-redux";
 import GoBack from "../../components/GoBack";
 import RandomGifts from "../../components/RandomGifts";

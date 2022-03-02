@@ -5,6 +5,7 @@ import { headerHeight } from "../Header/Header.style";
 export const Container = styled.div`
 	margin: 0 1em;
 	max-width: ${breakpoints.desktop};
+	position: relative;
 	${device.desktop`
     margin-right: auto;
     margin-left: auto; 
