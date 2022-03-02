@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { GiftsContainer, GiftsBand, GiftSpinner } from "./RandomGifts.styles";
 import Gift from "../Gift";
 import GiftModal from "../GiftModal";
+import Notification from "../../components/Notification";
+import { formatterCurrency } from "../../utils";
+import { currencies, locales } from "../../constants";
 
 const MIN_NUM = 2;
 const MAX_NUM = 3;
@@ -13,6 +16,8 @@ function RandomGifts({ gifts, resetBox, resetOpenedBox }) {
 	const [timeOfAnimation, setTimeOfAnimation] = useState(0);
 	const [giftSelected, setGiftSelected] = useState(null);
 	const [openModal, setOpenModal] = useState(false);
+	const [openNotification, setOpenNotification] = useState(false);
+	const [message, setMessage] = useState("");
 
 	const randomNumberWithDecimal = () => {
 		const accuracy = Math.pow(10, NUM_OF_DECIMALS);
@@ -32,6 +37,13 @@ function RandomGifts({ gifts, resetBox, resetOpenedBox }) {
 			const indexOfWinner = Math.floor((gifts.length * percentage) / 100);
 			const winner = gifts[indexOfWinner];
 			setGiftSelected(winner);
+			setMessage(
+				`${formatterCurrency(
+					locales["US"],
+					currencies["USD"],
+					winner.sellPrice
+				)} added to your account`
+			);
 		}
 		console.log(randomTime);
 		setTimeOfAnimation(randomTime);
@@ -83,6 +95,17 @@ function RandomGifts({ gifts, resetBox, resetOpenedBox }) {
 					isOpen={openModal}
 					gift={giftSelected}
 					resetOpenedBox={resetOpenedBox}
+					openNotification={() => setOpenNotification(true)}
+					closeNotification={() => setOpenNotification(false)}
+				/>
+			)}
+			{openNotification && (
+				<Notification
+					isOpen={openNotification}
+					onClose={() => {
+						setOpenNotification(false);
+					}}
+					message={message}
 				/>
 			)}
 		</>
