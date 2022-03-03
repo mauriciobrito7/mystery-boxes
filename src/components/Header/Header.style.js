@@ -47,15 +47,15 @@ export const Balance = styled.div`
 `;
 
 export const Amount = styled.div`
-  margin-left: 0.6em;
+	margin-left: 0.6em;
 `;
 
-export const User = styled.div`
-  width: 112px;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+export const UserContainer = styled.div`
+	width: 112px;
+	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
 `;
 
 export const Avatar = styled.img`
