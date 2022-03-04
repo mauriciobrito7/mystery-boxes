@@ -1,7 +1,7 @@
 {
 	"name": "mystery-boxes",
 	"version": "0.1.0",
-	"private": false,
+	"private": true,
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.14.1",
 		"@testing-library/react": "^11.2.7",
@@ -51,8 +51,8 @@
 		"@semantic-release/release-notes-generator",
 		"@semantic-release/changelog",
 		"@semantic-release/npm",
-		"@semantic-release/github",
-		"@semantic-release/git"
+		"@semantic-release/git",
+		"@semantic-release/github"
 	],
 	"devDependencies": {
 		"semantic-release": "^19.0.2"
