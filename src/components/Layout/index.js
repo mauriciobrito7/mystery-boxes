@@ -1,15 +1,20 @@
 import { Container, MainContent } from "./Layout.style";
 import Header from "../Header/";
 
-function Layout({ children }) {
-  return (
-    <>
-      <Container>
-        <Header />
-        <MainContent>{children}</MainContent>
-      </Container>
-    </>
-  );
+export const LayoutVariant = {
+	default: "default",
+	full: "full",
+};
+
+function Layout({ children, variant = LayoutVariant.default }) {
+	return (
+		<>
+			<Container>
+				<Header />
+				<MainContent variant={variant}>{children}</MainContent>
+			</Container>
+		</>
+	);
 }
 
 export default Layout;
