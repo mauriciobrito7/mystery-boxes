@@ -11,7 +11,7 @@ import { formatterCurrency } from "../../utils";
 import { currencies, locales } from "../../constants";
 import Gift from "../Gift";
 import { connect } from "react-redux";
-import { addBalance } from "../../redux/actions/user";
+import { addBalance, removeGift } from "../../redux/actions/user";
 
 function GiftModal({
 	isOpen,
@@ -21,10 +21,13 @@ function GiftModal({
 	resetOpenedBox,
 	openNotification,
 	closeNotification,
+	removeGift,
 }) {
 	const [wasGiftSold, setWasGiftSold] = useState(false);
+
 	const sellGift = (sellPrice) => {
 		addBalance(sellPrice);
+		removeGift(gift);
 	};
 
 	const tryAgain = () => {
@@ -79,6 +82,7 @@ function GiftModal({
 
 const mapDispatchToProps = (dispatch) => ({
 	addBalance: (amount) => dispatch(addBalance(amount)),
+	removeGift: (gift) => dispatch(removeGift(gift)),
 });
 
 export default connect(null, mapDispatchToProps)(GiftModal);

@@ -1,5 +1,5 @@
 import { Slug } from "../constants";
-import { LayoutVariant } from "../components/Layout";
+import { LayoutVariant } from "../constants/";
 
 export const layoutMode = {
 	[Slug.Home]: LayoutVariant.default,

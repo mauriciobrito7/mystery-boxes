@@ -5,13 +5,15 @@ import GiftModal from "../GiftModal";
 import Notification from "../../components/Notification";
 import { formatterCurrency } from "../../utils";
 import { currencies, locales } from "../../constants";
+import { connect } from "react-redux";
+import { addGift } from "../../redux/actions";
 
 const MIN_NUM = 2;
 const MAX_NUM = 3;
 const NUM_OF_DECIMALS = 1;
 const VELOCITY_PER_SECONDS = 1;
 
-function RandomGifts({ gifts, resetBox, resetOpenedBox }) {
+function RandomGifts({ gifts, resetBox, resetOpenedBox, addGift }) {
 	const [stopAnimation, setStopAnimation] = useState(false);
 	const [timeOfAnimation, setTimeOfAnimation] = useState(0);
 	const [giftSelected, setGiftSelected] = useState(null);
@@ -37,6 +39,7 @@ function RandomGifts({ gifts, resetBox, resetOpenedBox }) {
 			const indexOfWinner = Math.floor((gifts.length * percentage) / 100);
 			const winner = gifts[indexOfWinner];
 			setGiftSelected(winner);
+			addGift(winner);
 			setMessage(
 				`${formatterCurrency(
 					locales["US"],
@@ -112,4 +115,8 @@ function RandomGifts({ gifts, resetBox, resetOpenedBox }) {
 	);
 }
 
-export default RandomGifts;
+const mapDispatchToProps = (dispatch) => ({
+	addGift: (gift) => dispatch(addGift(gift)),
+});
+
+export default connect(null, mapDispatchToProps)(RandomGifts);
