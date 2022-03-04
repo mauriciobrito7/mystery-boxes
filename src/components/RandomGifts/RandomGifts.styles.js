@@ -48,14 +48,14 @@ export const GiftsContainer = styled.div`
 `;
 
 export const GiftsBand = styled.div`
-  display: inline-flex;
-  width: auto;
-  height: 100%;
-  /* border: 1px dashed red; */
-  animation: ${(props) => GiftCardAnimation(props.numberOfElements)} 1s 0.5s
-    infinite linear;
-  animation-play-state: ${(props) =>
-    props.stopAnimation ? "paused" : "running"};
+	display: inline-flex;
+	width: auto;
+	height: 100%;
+	gap: 24px;
+	animation: ${(props) => GiftCardAnimation(props.numberOfElements)} 1s 0.5s
+		infinite linear;
+	animation-play-state: ${(props) =>
+		props.stopAnimation ? "paused" : "running"};
 `;
 
 export const GiftSpinner = styled.div`
