@@ -11,13 +11,13 @@ import { layoutMode } from "./utils";
 
 function App() {
 	const location = useLocation();
-	const variant = layoutMode[location.pathname];
+	const layoutVariant = layoutMode[location.pathname];
 
 	return (
-		<div className="App">
+		<>
 			<GlobalStyles />
 			<Provider store={store}>
-				<Layout variant={variant}>
+				<Layout variant={layoutVariant}>
 					<Switch>
 						<Route exact path={Slug.Home} component={Home} />
 						<Route exact path={Slug.BoxDetail} component={BoxDetail} />
@@ -25,7 +25,7 @@ function App() {
 					</Switch>
 				</Layout>
 			</Provider>
-		</div>
+		</>
 	);
 }
 

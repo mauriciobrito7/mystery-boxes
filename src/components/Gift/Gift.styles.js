@@ -3,22 +3,21 @@ import { colors, borderRadius } from "../../styles/theme";
 
 const widthOfCard = 180;
 const heightofCard = 242;
-const marginOfCard = 24;
 
 export const GiftCard = styled.div`
-  background: ${colors.blackBackground};
-  width: ${widthOfCard}px;
-  height: ${heightofCard}px;
-  border-radius: ${borderRadius};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-right: ${marginOfCard}px;
-  &:last-of-type {
-    margin-right: 0;
-  }
+	background: ${colors.blackBackground};
+	width: ${widthOfCard}px;
+	height: ${heightofCard}px;
+	border-radius: ${borderRadius};
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+	&:last-of-type {
+		margin-right: 0;
+	}
 `;
 
 export const GiftImgWrapper = styled.div`
