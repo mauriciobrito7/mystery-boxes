@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 
 export const GiftsContainer = styled.div`
-	background: blue;
+	background: transparent;
 `;
 
 export const GiftsTitleContainer = styled.div`
