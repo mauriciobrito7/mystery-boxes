@@ -5,8 +5,8 @@ import { headerHeight } from "../Header/Header.style";
 const mainContentVariant = {
 	default: `height: calc(100vh - ${headerHeight});`,
 	full: `height: auto;
-		margin-top: ${headerHeight};
-		padding-bottom: ${headerHeight};
+		margin-top:40px;
+		padding-bottom: 40px;
 	`,
 };
 

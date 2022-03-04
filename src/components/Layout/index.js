@@ -1,10 +1,6 @@
 import { Container, MainContent } from "./Layout.style";
 import Header from "../Header/";
-
-export const LayoutVariant = {
-	default: "default",
-	full: "full",
-};
+import { LayoutVariant } from "../../constants/";
 
 function Layout({ children, variant = LayoutVariant.default }) {
 	return (
