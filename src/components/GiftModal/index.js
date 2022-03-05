@@ -12,6 +12,7 @@ import { currencies, locales } from "../../constants";
 import Gift from "../Gift";
 import { connect } from "react-redux";
 import { addBalance, removeGift } from "../../redux/actions/user";
+import { buttonVariant } from "../../constants";
 
 function GiftModal({
 	isOpen,
@@ -65,7 +66,7 @@ function GiftModal({
 							openNotification();
 						}}
 						disabled={wasGiftSold}
-						secondary
+						variant={buttonVariant.secondary}
 					>
 						Sell for{" "}
 						{formatterCurrency(
