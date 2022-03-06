@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
 import { colors } from "../../styles/theme";
+import { fadeIn } from "../../styles/animation";
 
 export const NotificationContainer = styled.div`
 	background: ${colors.white};
@@ -12,8 +13,10 @@ export const NotificationContainer = styled.div`
 	align-items: center;
 	position: absolute;
 	top: 102px;
-	right: 0;
+	right: -2px;
 	z-index: 999;
+	filter: drop-shadow(0 0 0.75rem ${colors.blackBackground});
+	${fadeIn}
 `;
 
 export const BoderLeft = styled.div`
