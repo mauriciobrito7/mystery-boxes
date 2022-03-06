@@ -4,6 +4,7 @@ import {
 	GiftsCollection,
 	GiftsTitleContainer,
 	GiftsTitle,
+	NoGifstMessage,
 } from "./Gifts.styles";
 import Gift from "../../components/Gift";
 import { Slug } from "../../constants";
@@ -18,7 +19,9 @@ function Gifts({ user }) {
 				<GiftsTitle>All your Gifts ({gifts.length})</GiftsTitle>
 			</GiftsTitleContainer>
 			<GiftsCollection>
-				{gifts.length === 0 && <h2>There isn't a gift to show</h2>}
+				{gifts.length === 0 && (
+					<NoGifstMessage>There isn't a gift to show</NoGifstMessage>
+				)}
 				{gifts.map((gift) => (
 					<Gift key={gift.name} {...gift} />
 				))}
