@@ -12,6 +12,7 @@ export const GiftsTitleContainer = styled.div`
 
 export const GiftsTitle = styled.h2`
 	margin-left: 40px;
+	font-weight: normal;
 `;
 
 export const NoGifstMessage = styled.h3`
