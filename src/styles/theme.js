@@ -61,10 +61,10 @@ export const fontConfig = {
 export const borderRadius = "4px";
 
 export const breakpoints = {
-  mobile: "375px",
-  tablet: "768px",
-  desktop: "1200px",
-  large: "1400px",
+	mobile: "375px",
+	tablet: "768px",
+	desktop: "1024px",
+	large: "1400px",
 };
 
 export const device = {
