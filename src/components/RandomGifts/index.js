@@ -7,74 +7,35 @@ import { formatterCurrency } from "../../utils";
 import { currencies, locales } from "../../constants";
 import { connect } from "react-redux";
 import { addGift } from "../../redux/actions";
-
-const MIN_NUM = 2;
-const MAX_NUM = 3;
-const NUM_OF_DECIMALS = 1;
-const VELOCITY_PER_SECONDS = 1;
+import useSelectWinner from "../../hooks/useSelectWinner";
 
 function RandomGifts({ gifts, resetBox, resetOpenedBox, addGift }) {
-	const [stopAnimation, setStopAnimation] = useState(false);
-	const [timeOfAnimation, setTimeOfAnimation] = useState(0);
-	const [giftSelected, setGiftSelected] = useState(null);
 	const [openModal, setOpenModal] = useState(false);
 	const [openNotification, setOpenNotification] = useState(false);
 	const [message, setMessage] = useState("");
-
-	const randomNumberWithDecimal = () => {
-		const accuracy = Math.pow(10, NUM_OF_DECIMALS);
-		const min = MIN_NUM * accuracy;
-		const max = MAX_NUM * accuracy;
-		return Math.floor(Math.random() * (max - min + 1) + min) / accuracy;
-	};
-
-	const getSecondsToMilliSeconds = (seconds) => seconds * 1000;
+	const { winnerSelected, isSelectionStopped } = useSelectWinner(gifts, () =>
+		setOpenModal(true)
+	);
 
 	useEffect(() => {
-		const randomNumber = randomNumberWithDecimal();
-		const randomTime = getSecondsToMilliSeconds(randomNumber);
-		const turns = randomNumber / VELOCITY_PER_SECONDS;
-		const percentage = (turns % 1).toFixed(1) * 100;
-		if (gifts) {
-			const indexOfWinner = Math.floor((gifts.length * percentage) / 100);
-			const winner = gifts[indexOfWinner];
-			setGiftSelected(winner);
-			addGift(winner);
+		if (winnerSelected) {
+			addGift(winnerSelected);
 			setMessage(
 				`${formatterCurrency(
 					locales["US"],
 					currencies["USD"],
-					winner.sellPrice
+					winnerSelected.sellPrice
 				)} added to your account`
 			);
 		}
-		console.log(randomTime);
-		setTimeOfAnimation(randomTime);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [gifts.length]);
-
-	const handleAnimation = () =>
-		setTimeout(() => {
-			setStopAnimation(true);
-			setTimeout(() => setOpenModal(true), 1000);
-		}, timeOfAnimation);
-
-	useEffect(() => {
-		if (timeOfAnimation > 0) {
-			handleAnimation();
-		}
-
-		return () => {
-			clearTimeout(handleAnimation);
-		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [stopAnimation, timeOfAnimation]);
+	}, [winnerSelected]);
 
 	return (
 		<>
 			<GiftsContainer>
 				<GiftsBand
-					stopAnimation={stopAnimation}
+					stopAnimation={isSelectionStopped}
 					numberOfElements={gifts ? gifts.length : null}
 				>
 					{gifts &&
@@ -96,7 +57,7 @@ function RandomGifts({ gifts, resetBox, resetOpenedBox, addGift }) {
 						resetBox();
 					}}
 					isOpen={openModal}
-					gift={giftSelected}
+					gift={winnerSelected}
 					resetOpenedBox={resetOpenedBox}
 					openNotification={() => setOpenNotification(true)}
 					closeNotification={() => setOpenNotification(false)}
