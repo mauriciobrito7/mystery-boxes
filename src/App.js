@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import BoxDetail from "./pages/Box-Detail";
 import Gifts from "./pages/Gifts";
 import { Slug } from "./constants";
-import { layoutMode } from "./utils";
+import { layoutMode } from "./constants";
 
 function App() {
 	const location = useLocation();
