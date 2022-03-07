@@ -22,8 +22,8 @@ function Gifts({ user }) {
 				{gifts.length === 0 && (
 					<NoGifstMessage>There isn't a gift to show</NoGifstMessage>
 				)}
-				{gifts.map((gift) => (
-					<Gift key={gift.name} {...gift} />
+				{gifts.map((gift, index) => (
+					<Gift key={`${index}-${gift.name}`} {...gift} />
 				))}
 			</GiftsCollection>
 		</GiftsContainer>
