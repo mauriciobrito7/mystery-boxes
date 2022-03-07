@@ -23,8 +23,8 @@ export const NoGifstMessage = styled.h3`
 `;
 
 export const GiftsCollection = styled.div`
-	display: inline-flex;
+	display: flex;
 	flex-wrap: wrap;
 	gap: 24px;
-	width: 100%;
+	justify-content: center;
 `;

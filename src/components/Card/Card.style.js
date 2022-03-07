@@ -1,20 +1,25 @@
 import styled from "styled-components/macro";
 import { colors, borderRadius, fontConfig } from "../../styles/theme";
+import { device } from "../../styles/theme";
 
 export const CardContainer = styled.div`
-  background: ${colors.mainBackground};
-  color: ${colors.white};
-  border-radius: ${borderRadius};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 23%;
-  padding: 1em;
+	background: ${colors.mainBackground};
+	color: ${colors.white};
+	border-radius: ${borderRadius};
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: calc(50% - 24px);
+	padding: 1em;
 
-  &:last-of-type {
-    margin-right: 0;
-  }
+	${device.tablet`
+    width: calc(23% - 24px);
+  `}
+
+	&:last-of-type {
+		margin-right: 0;
+	}
 `;
 
 export const CardImage = styled.img`
